@@ -1,0 +1,275 @@
+html{
+  height: 100%;
+}
+body {
+  background: no-repeat center center fixed; 
+  background-size: cover;
+  font-family: monospace;
+  margin: auto;
+  height: 100%;
+}
+
+.list-header {
+  background-color: #698B69;
+  text-align: center;
+  color: #FFF;
+}
+
+.login-card {
+  padding: 10px 10px 10px 10px;
+  background-color: #F7F7F7;
+  margin: auto;
+  max-width: 600px;
+  max-height: 800px;
+  height: 80%;
+  width: 92%;
+  border-radius: 2px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.login-card h1 {
+  font-weight: 100;
+  text-align: center;
+  font-size: 2.3em;
+}
+
+.login-card input[type=submit] {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.login-card input[type=text], input[type=password] {
+  height: 44px;
+  font-size: 16px;
+  width: 99%;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  /* border-radius: 2px; */
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.login-card input[type=text]:hover, input[type=password]:hover {
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.login {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
+}
+
+.login-submit {
+  border: 0px;
+  color: #FFF;
+  background-color: #698B69;
+}
+
+.login-submit:hover {
+  border: 0px;
+  background-color: #357ae8;
+}
+
+.login-card a {
+  text-decoration: none;
+  color: #666;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  opacity: 0.6;
+  transition: opacity ease 0.5s;
+}
+
+.login-card a:hover {
+  opacity: 1;
+}
+
+.login-help {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+}
+
+.login-result {
+  color: #FF0000;
+}
+
+div.table-title {
+  display: block;
+  margin: auto;
+  max-width: 1200px;
+  padding:5px;
+  width: 95%;
+}
+
+.table-title h3 {
+   color: #000000;
+   font-size: 30px;
+   font-weight: 400;
+   font-style:normal;
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+   text-transform:uppercase;
+}
+
+.table-top {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 10%;
+  margin: auto;
+  max-width: 1200px;
+  padding:10px;
+  width: 99%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+
+.table-top-list-item {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 5%;
+  margin: auto;
+  max-width: 1200px;
+  padding:5px;
+  width: 99%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+
+.table-data-rows {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  max-width: 1200px;
+  padding:5px;
+  width: 99%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+
+.rows-container{
+  height: 100%
+}
+
+.list-header {
+  background-color: #698B69;
+  text-align: center;
+  color: #FFF;
+}
+
+.list-name{
+  margin: auto;
+  padding:20px;
+  width: 90%;
+}
+.list-edit{
+  margin: auto;
+  padding:20px;
+  width: 10%;
+}
+
+.list-add-button{
+  margin: auto;
+  padding:20px;
+  width: 10%;
+}
+
+.list-add-input{
+  margin: auto;
+  padding:20px;
+  width: 90%;
+}
+
+.list-item-add-button{
+  margin: auto;
+  padding:20px;
+  width: 10%;
+}
+
+.list-item-add-input{
+  margin: auto;
+  padding:20px;
+  width: 90%;
+}
+
+.list-item-name{
+  margin: auto;
+  padding:20px;
+  width: 90%;
+}
+.list-item-edit{
+  margin: auto;
+  padding:20px;
+  width: 10%;
+}
+
+.list-add-button{
+  margin: auto;
+  padding:20px;
+  width: 5%;
+}
+
+.list-add-input{
+  margin: auto;
+  padding:20px;
+  width: 95%;
+}
+
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom-: 1px solid #C1C3D1;
+  font-size:16px;
+  font-weight:normal;
+}
+ 
+tr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+  border-bottom: 1px solid #22262e;
+}
+ 
+tr:first-child {
+  border-top:none;
+}
+
+td:first-child {
+  border-bottom-left-radius:3px;
+}
+ 
+td:last-child {
+  border-bottom-right-radius:3px;
+}
+ 
+td {
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+}
+
+td input {
+    width: 100%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+h4.login-error{
+  color: red;
+}
