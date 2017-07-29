@@ -97,14 +97,14 @@ function list_actions($action,$columns,$values,$link){
 		case 'changename':
 			$currentTime = date('Y-m-d h:i:s');
 			if($listID=="" || $listName==""){
-				echo "Invalid parameters";
+				outputList($outputType,0,"","Invalid parameters");
 			}
 			else{
 				$sql = "UPDATE lists SET listname='".$listName."',listupdatedate='".$currentTime."' WHERE listid='".$listID."'";
 				if ($link->query($sql) === TRUE) {
 					echo "Success";
 				} else {
-					echo "Error: " . $sql . "<br>" . $link->error;
+					outputList($outputType,0,"","Error: " . $sql . "<br>" . $link->error);
 				}
 			}
 			break;
