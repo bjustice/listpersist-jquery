@@ -50,17 +50,23 @@ function user_actions($action,$columns,$values,$link){
 					$email = $values[$i];
 				}
 			}
-			$myDate = date('Y-m-d');
-			$myHash = password_hash($pass,PASSWORD_DEFAULT);
-			$result = $link>query("SELECT FROM users WHERE emailaddress=".$email);
-			if($result->num_rows == 0){
-				$link->query("INSERT INTO users (username,password,emailaddress,datecreated) VALUES ('".$newUser."','".$myHash."','".$email."','".$myDate."')");
+			if($newUser == "" || $pass == "" || $email == ""){
+				echo "Invalid Parameters";
+			}else{
+				$myDate = date('Y-m-d');
+				$myHash = password_hash($pass,PASSWORD_DEFAULT);
+				$sql = "SELECT * FROM users WHERE emailaddress=".$email;
+				
+				$result = $link->query($sql);
+				if($result->num_rows == 0){
+					$link->query("INSERT INTO users (username,password,emailaddress,datecreated) VALUES ('".$newUser."','".$myHash."','".$email."','".$myDate."')");
+					$lastInsertedPeopleId = mysqli_insert_id($link);
+					echo "created,".$lastInsertedPeopleId;
+				}
+				else{
+					echo 'E-mail address is already in use.';
+				}
 			}
-			else{
-				echo 'E-mail address is already in use.';
-			}
-			$lastInsertedPeopleId = mysqli_insert_id($link);
-			echo "created,".$lastInsertedPeopleId;
 			break;
 		default:
 			echo 'Invalid user table action.';

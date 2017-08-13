@@ -107,10 +107,10 @@ function shared_list_actions($action,$columns,$values,$link){
 				else{
 					$row = $result->fetch_assoc();
 					if($row['approved']==0){
-						outputAsJson(array("connection_status"=>"1"));//unapproved connection
+						outputAsJson(array("status"=>"1"));//unapproved connection
 					}
 					else{
-						outputAsJson(array("connection_status"=>"2"));//approved connection
+						outputAsJson(array("status"=>"2"));//approved connection
 					}
 				}
 
@@ -132,9 +132,9 @@ function shared_list_actions($action,$columns,$values,$link){
 					$insertSql = "INSERT INTO user_connections (owner_id,shared_id,created_date,approved,list_id) VALUES ('".$ownerID."','".$sharedID."','".$date."','0','".$listID."')";
 					if ($link->query($insertSql) === TRUE) {
 				    	$lastInsertedConnectionId = mysqli_insert_id($link);
-						outputAsJson(array("creation_status"=>"1","created"=>$lastInsertedConnectionId));
+						outputAsJson(array("status"=>"1","created"=>$lastInsertedConnectionId));
 					} else {
-					    outputAsJson(array("creation_status"=>"0","error".$sql."".$link->error));
+					    outputAsJson(array("status"=>"0","error".$sql."".$link->error));
 					}
 				}
 			}

@@ -90,14 +90,14 @@ function list_actions($action,$columns,$values,$link){
 				if ($link->query($sql) === TRUE) {
 					echo "Success";
 				} else {
-					echo "Error: " . $sql . "<br>" . $link->error;
+					outputList($outputType,0,"","Error: " . $sql . "<br>" . $link->error);
 				}
 			}
 			break;
 		case 'changename':
 			$currentTime = date('Y-m-d h:i:s');
 			if($listID=="" || $listName==""){
-				outputList($outputType,0,"","Invalid parameters");
+				outputList($outputType,0,"","Invalid parameters. List ID and List Name");
 			}
 			else{
 				$sql = "UPDATE lists SET listname='".$listName."',listupdatedate='".$currentTime."' WHERE listid='".$listID."'";
@@ -113,6 +113,7 @@ function list_actions($action,$columns,$values,$link){
 			break;
 	}
 }
+
 function outputList($outputType,$status,$outputData,$error){
 	if($outputType=='JSON'){
 		if($status == 0){

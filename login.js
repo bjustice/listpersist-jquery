@@ -54,6 +54,9 @@ function processLoginSubmit(){
 
 function processRegisterSubmit(){
     $('#registerForm').submit(function(registerEvent) {
+        // stop the form from submitting and refreshing the page
+        registerEvent.preventDefault();
+
         var user = $('#register_user').val();
         var pass1 = $('#register_pass1').val();
         var pass2 = $('#register_pass2').val();
@@ -64,17 +67,18 @@ function processRegisterSubmit(){
         }
         else{
             $.ajax({
-                url:"datawork/persistapi.php/list/allowned",
+                url:"datawork/persistapi.php/user/create",
                 type: "POST",
-                data: JSON.stringify({ownerid: 2})
+                data: JSON.stringify({username: user,
+                    pass: pass1,
+                    email: email})
             }).done(function(data){
-                console.log("processed");
+                updateForLoginSuccess();
+                
             }).fail(function(){
                 alert("Unable to connect to server.");
             });
         }
-        // stop the form from submitting and refreshing the page
-        registerEvent.preventDefault();
 
     });
 }

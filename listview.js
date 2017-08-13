@@ -65,7 +65,7 @@ function initializeListAddButton(allListData){
             color:0,
             id:999
         });
-        allListData.push(listData);
+        //allListData.push(listData);
         initializeListEdit(listData);
 
         $.ajax({
