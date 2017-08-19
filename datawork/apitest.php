@@ -16,7 +16,7 @@
 	    			<label>Username:</label>
 		    	</td>
 		    	<td>
-		    		<input type="text" name="username" id="username" autofocus>
+		    		<input type="text" name="uname" id="uname" autofocus>
 		    	</td>
 		    </tr>
 	    	<tr>

@@ -73,8 +73,8 @@ function processRegisterSubmit(){
                     pass: pass1,
                     email: email})
             }).done(function(data){
-                updateForLoginSuccess();
-                
+                updateForLoginSuccess(data);
+
             }).fail(function(){
                 alert("Unable to connect to server.");
             });
@@ -85,7 +85,7 @@ function processRegisterSubmit(){
 
 function updateForLoginSuccess(data){
     var splitLoginResult = data.split(',');
-    if(splitLoginResult[0]!='VERIFIED'){
+    if(!(splitLoginResult[0]=='VERIFIED' || splitLoginResult[0]=='CREATED')){
         $("#login_error_message").text(" • Invalid username or password.");
     }
     else{

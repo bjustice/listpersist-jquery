@@ -19,17 +19,17 @@ $(document).keypress(function(e){
 });
 
 function attemptLogin(){
-	var username = $("#username").val();
+	var uname = $("#uname").val();
 	var password = $("#password").val();
 	var loginSuccessMessage = "Username and Password is required.";
 	var loginValidatedMessage = "Login Validated.";
 	var invalidLoginMessage = "Invalid login credentials.";
 
-	if(username == '' || password == ''){
+	if(uname == '' || password == ''){
 		$("#login_message").text(loginSuccessMessage);
 	}
 	//eventually validate login here. for now forcing admin admin
-	else if(username=="admin" && password=="admin"){
+	else if(uname=="admin" && password=="admin"){
 		$("#login_message").text(loginValidatedMessage);
 		$("#login_form").hide();
 		$("#api_test_form").show();
@@ -55,7 +55,7 @@ var listItemActions =
 		['changename','Change Name',['Item ID','itemid'],['Item Name','itemname'],['Output Type','output_type']] ];
 
 var userActions = 
-	[ 	['validate','Validate',['Username','username'],['Password','password'],['Output Type','output_type']],
+	[ 	['validate','Validate',['Username','username'],['Password','pass'],['Output Type','output_type']],
 		['googlevalidation','Google Validate',['Output Type','output_type']],
 		['create','Create',['Username','username'],['Password','pass'],['Email','email'],['Output Type','output_type']] ];
 

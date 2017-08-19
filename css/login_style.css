@@ -126,11 +126,11 @@ div.table-title {
 .table-top {
   background: white;
   border-radius:3px;
-  border-collapse: collapse;
   height: 10%;
   margin: auto;
+  border-collapse: collapse;
   max-width: 1200px;
-  padding:10px;
+  padding: 0px 0px 20px 10px;
   width: 99%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
@@ -172,6 +172,18 @@ div.table-title {
   color: #FFF;
 }
 
+.list-header-text{
+  margin: auto;
+  padding:10px 15px 0px 15px;
+  width: 70%;
+}
+
+.list-header-logout{
+  margin: auto;
+  padding:10px 15px 0px 15px;
+  width: 30%;
+}
+
 .list-name{
   margin: auto;
   padding:20px;
@@ -185,48 +197,48 @@ div.table-title {
 
 .list-add-button{
   margin: auto;
-  padding:20px;
+  padding:15px;
   width: 10%;
 }
 
 .list-add-input{
   margin: auto;
-  padding:20px;
+  padding:15px;
   width: 90%;
 }
 
 .list-item-add-button{
   margin: auto;
-  padding:20px;
+  padding:15px;
   width: 10%;
 }
 
 .list-item-add-input{
   margin: auto;
-  padding:20px;
+  padding:15px;
   width: 90%;
 }
 
 .list-item-name{
   margin: auto;
-  padding:20px;
+  padding:15px;
   width: 90%;
 }
 .list-item-edit{
   margin: auto;
-  padding:20px;
+  padding:15px;
   width: 10%;
 }
 
 .list-add-button{
   margin: auto;
-  padding:20px;
+  padding:15px;
   width: 5%;
 }
 
 .list-add-input{
   margin: auto;
-  padding:20px;
+  padding:15px;
   width: 95%;
 }
 

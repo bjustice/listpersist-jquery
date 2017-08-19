@@ -56,12 +56,12 @@ function user_actions($action,$columns,$values,$link){
 				$myDate = date('Y-m-d');
 				$myHash = password_hash($pass,PASSWORD_DEFAULT);
 				$sql = "SELECT * FROM users WHERE emailaddress=".$email;
-				
+
 				$result = $link->query($sql);
 				if($result->num_rows == 0){
 					$link->query("INSERT INTO users (username,password,emailaddress,datecreated) VALUES ('".$newUser."','".$myHash."','".$email."','".$myDate."')");
 					$lastInsertedPeopleId = mysqli_insert_id($link);
-					echo "created,".$lastInsertedPeopleId;
+					echo "CREATED,".$lastInsertedPeopleId;
 				}
 				else{
 					echo 'E-mail address is already in use.';

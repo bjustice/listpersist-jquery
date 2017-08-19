@@ -37,9 +37,11 @@ function updateToListView(){
 function buildListHeaderHTML(){
     return "<table class='table-top'>\
         <tr>\
-            <td><h1>Lists</h1></td>\
-            <td><input id='list_logout_button' type='submit' class='ui-button' value='Logout'></td>\
+            <td class='list-header-text'><h1>Lists</h1></td>\
+            <td class='list-header-logout'><input id='list_logout_button' type='submit' class='ui-button' value='Logout'></td>\
         </tr>\
+    </table>\
+    <table class='table-top'>\
         <tr>\
             <form id='add_list_form' action='' title='' method='post'>\
                 <td class='list-add-button'>\
@@ -59,14 +61,7 @@ function initializeListAddButton(allListData){
         var builtHTML = listRowBuilder(listName,0,999);
         $("#list-data-rows").prepend(builtHTML);
 
-        var listData = ({
-            name:listName,
-            listid:999,
-            color:0,
-            id:999
-        });
         //allListData.push(listData);
-        initializeListEdit(listData);
 
         $.ajax({
             url:"datawork/persistapi.php/list/add",
@@ -74,6 +69,14 @@ function initializeListAddButton(allListData){
             data: JSON.stringify({ownerid: sessionStorage.getItem("ownerid"),
                 listname: listName})
         }).done(function(data){
+            var splitData = data.split(",");
+            var listData = ({
+                name:listName,
+                listid:splitData[2],
+                color:0,
+                id:999
+            });
+            initializeListEdit(listData);
             //list successfully added, no action needed here. probably can just delete the done function at some point.     
         }).fail(function(){
             alert("Unable to connect to server.");
@@ -82,63 +85,50 @@ function initializeListAddButton(allListData){
 }
 
 function listRowBuilder(name,color,id){
-    return "<tr class='table-row' style='background:#"+color+"'>\
-            <td class='list-name' id=list_"+id+" class='text-left'>"+name+"</td>\
-            <td class='list-edit' id=list_edit_button"+id+" class='text-right'><input type='button' id='editlist' value='Edit' class='ui-button' onClick=''></td>\
+    return "<tr class='table-row' id='list_table_row_"+id+"' style='background:#"+color+"'>\
+            <td class='list-name' id='list_"+id+"' class='text-left'>"+name+"</td>\
+            <td class='list-edit' id='list_edit_button"+id+"' class='text-right'><input type='button' id='editlist' value='Edit' class='ui-button' onClick=''></td>\
         </tr>\
         <tr title='Edit Your List Here' id='edit_display"+id+"'>\
             <td>Name<input id='list_name_edit_"+id+"' type='text' name='user' value='"+name+"'></td>\
-            <td>Color<input id='color_"+id+"' class='trigger'></input></td>\
+            <td>Color<input id='list_color_"+id+"'></input></td>\
+            <td>Owner: </td>\
         </tr>";
 }
+
 
 function initializeListEdit(listData,allListData){
     $("#edit_display"+listData.id).hide(); 
 
     $("#list_edit_button"+listData.id).click(function(){
         $("#edit_display"+listData.id).dialog({
-        autoOpen: false,
-        resizable: false,
-        height: "auto",
-        width: $(window.width)*0.8,
-        modal: true,
-        buttons: {
-            "Save": function() {
-                $("#list_"+listData.id).html($("#list_name_edit_"+listData.id).val());
-                $( this ).dialog( "close" );
-            },
-            Cancel: function() {
-                $( this ).dialog( "close" );
+            autoOpen: false,
+            resizable: false,
+            height: "auto",
+            width: $(window.width)*0.8,
+            modal: true,
+            buttons: {
+                "Save": function() {
+                    $("#list_"+listData.id).html($("#list_name_edit_"+listData.id).val());
+                    console.log("#list_table_row_"+listData.id);
+                    $("#list_table_row_"+listData.id).css({background:"#OOFF"});
+                    $( this ).dialog( "close" );
+                },
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                }
             }
-        }
         }).dialog("open");
+    });
+
+
+
+    $("#list_color_"+listData.id).spectrum({
+        color: "#f00"
     });
 
     $("#list_"+listData.id).click(function(){
         updateToListItemView(listData.listid,allListData);
-    });
-
-    $('#color_'+listData.id).colorPicker({
-        buildCallback: function($elm) {
-            this.$colorPatch = $elm.prepend('<div class="cp-disp">').find('.cp-disp');
-        },
-        cssAddon:
-            '.cp-disp {padding:10px; margin-bottom:6px; font-size:19px; height:20px; line-height:20px}' +
-            '.cp-xy-slider {width:200px; height:200px;}' +
-            '.cp-xy-cursor {width:16px; height:16px; border-width:2px; margin:-8px}' +
-            '.cp-z-slider {height:200px; width:40px;}' +
-            '.cp-z-cursor {border-width:8px; margin-top:-8px;}' +
-            '.cp-alpha {height:40px;}' +
-            '.cp-alpha-cursor {border-width:8px; margin-left:-8px;}',
-
-        renderCallback: function($elm, toggled) {
-            var colors = this.color.colors;
-
-            this.$colorPatch.css({
-                backgroundColor: '#' + colors.HEX,
-                color: colors.RGBLuminance > 0.22 ? '#222' : '#ddd'
-            }).text(this.color.toString($elm._colorMode)); // $elm.val();
-        }
     });
 }
 

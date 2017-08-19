@@ -8,9 +8,10 @@
 
  	<script src="jquery-3.2.1.min.js"></script>
  	<script src=login.js></script>
- 	<script src="jqColorPicker.min.js"></script>
  	<script src="jquery-ui.min.js"></script>
+	<script src='spectrum.js'></script>
 
+	<link rel='stylesheet' href='css/spectrum.css' />
 	<link rel="stylesheet" href="css/login_style.css">
  	<link rel="stylesheet" href="css/jquery-ui.min.css">
 
