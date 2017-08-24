@@ -1,6 +1,8 @@
+var allListData = [];
 
 function updateToListView(){
     $("#login_card").hide();
+    $("#register_card").hide();
     $("#list_display").show();
     $("#list_display").append(buildListHeaderHTML());
 
@@ -25,7 +27,7 @@ function updateToListView(){
                     processedSharedString+=(list.listname)
                 });
             }
-            listProcesssApiData(data1);       
+            listProcessApiData(data1);       
         }).fail(function(){
             alert("Unable to connect to server.");
         });       
@@ -55,13 +57,10 @@ function buildListHeaderHTML(){
     </table>";
 }
 
-function initializeListAddButton(allListData){
+function initializeListAddButton(){
     $("#add_list_button").click(function(){
-        var listName = $("#add_list_input").val();
-        var builtHTML = listRowBuilder(listName,0,999);
-        $("#list-data-rows").prepend(builtHTML);
 
-        //allListData.push(listData);
+        var listName = $("#add_list_input").val();
 
         $.ajax({
             url:"datawork/persistapi.php/list/add",
@@ -74,34 +73,51 @@ function initializeListAddButton(allListData){
                 name:listName,
                 listid:splitData[2],
                 color:0,
-                id:999
+                displayID:allListData.length,
+                owner:"You"
             });
-            initializeListEdit(listData);
-            //list successfully added, no action needed here. probably can just delete the done function at some point.     
+
+            var builtHTML = listRowBuilder(listName,0,allListData.length);
+            $("#list-data-rows").prepend(builtHTML);
+
+            allListData.push(listData);
+            initializeListEdit(listData);   
         }).fail(function(){
             alert("Unable to connect to server.");
         });
     });
 }
 
-function listRowBuilder(name,color,id){
-    return "<tr class='table-row' id='list_table_row_"+id+"' style='background:#"+color+"'>\
-            <td class='list-name' id='list_"+id+"' class='text-left'>"+name+"</td>\
-            <td class='list-edit' id='list_edit_button"+id+"' class='text-right'><input type='button' id='editlist' value='Edit' class='ui-button' onClick=''></td>\
-        </tr>\
-        <tr title='Edit Your List Here' id='edit_display"+id+"'>\
-            <td>Name<input id='list_name_edit_"+id+"' type='text' name='user' value='"+name+"'></td>\
-            <td>Color<input id='list_color_"+id+"'></input></td>\
-            <td>Owner: </td>\
+function listRowBuilder(name,color,displayID){
+    return "<tr class='table-row' id='list_table_row_"+displayID+"' style='background:#"+color+"'>\
+            <td class='list-name' id='list_"+displayID+"' class='text-left'>"+name+"</td>\
+            <td class='list-edit' id='list_edit_button_"+displayID+"' class='text-right'><input type='button' id='editlist' value='Edit' class='ui-button' onClick=''></td>\
         </tr>";
 }
 
 
-function initializeListEdit(listData,allListData){
-    $("#edit_display"+listData.id).hide(); 
 
-    $("#list_edit_button"+listData.id).click(function(){
-        $("#edit_display"+listData.id).dialog({
+function initializeListEdit(listData){
+    var editDialogHTML = "\
+        <table title='Edit Your List Here' id='edit_display_"+listData.displayID+"'>\
+            <tr class='list-edit-row'>\
+                <td>Name:</td>\
+                <td><input id='list_name_edit_"+listData.displayID+"' type='text' name='user' value='"+listData.name+"'></td>\
+            </tr>\
+            <tr class='list-edit-row'>\
+                <td>Color:</td>\
+                <td><input id='list_color_"+listData.displayID+"'></input></td></tr>\
+            <tr class='list-edit-row'>\
+                <td>Owner: </td>\
+                <td>"+listData.owner+"</td>\
+            </tr>\
+            <tr class='list-edit-row'>\
+                <td>Display ID: </td>\
+                <td>"+listData.displayID+"</td>\
+            </tr>\
+        </tr>";
+
+    var editDialog = $(editDialogHTML).dialog({
             autoOpen: false,
             resizable: false,
             height: "auto",
@@ -109,41 +125,44 @@ function initializeListEdit(listData,allListData){
             modal: true,
             buttons: {
                 "Save": function() {
-                    $("#list_"+listData.id).html($("#list_name_edit_"+listData.id).val());
-                    console.log("#list_table_row_"+listData.id);
-                    $("#list_table_row_"+listData.id).css({background:"#OOFF"});
+                    $("#list_"+listData.displayID).html($("#list_name_edit_"+listData.displayID).val());
+
+                    var currentListColor = $("#list_color_"+listData.displayID).spectrum("get").toHexString();
+                    $("#list_table_row_"+listData.displayID).attr('style','background:'+currentListColor);
                     $( this ).dialog( "close" );
                 },
                 Cancel: function() {
                     $( this ).dialog( "close" );
                 }
             }
-        }).dialog("open");
     });
 
-
-
-    $("#list_color_"+listData.id).spectrum({
+    $("#list_color_"+listData.displayID).spectrum({
         color: "#f00"
     });
 
-    $("#list_"+listData.id).click(function(){
-        updateToListItemView(listData.listid,allListData);
+    $("#list_edit_button_"+listData.displayID).click(function(){
+        editDialog.dialog("open");
+    });
+
+    $("#list_"+listData.displayID).click(function(){
+        updateToListItemView(listData.listid);
     });
 }
 
-function listProcesssApiData(data){
+function listProcessApiData(data){
     var id = 0;
     var parsedData = data.split(',');
-    var allListData = [];
+    allListData = [];
 
-    $("#list_display").append("<table class='table-data-rows'><tbody id='list-data-rows'></tbody></table>");
+    $("#list_display").append("<table id='list_table_data_rows' class='table-data-rows'><tbody id='list-data-rows'></tbody></table>");
     for(var i =0; i < parsedData.length-1; i += 5){
         allListData.push({
             name:parsedData[i],
             listid:parsedData[i+1],
             color:parsedData[i+2],
-            id:i/5
+            displayID:i/5,
+            owner:"You"
         });
         $("#list-data-rows").append(listRowBuilder(parsedData[i],parsedData[i+2],(i/5)));
     }
@@ -154,5 +173,5 @@ function listProcesssApiData(data){
     allListData.forEach(function(listData){
         initializeListEdit(listData,allListData);
     });
-    initializeListAddButton(sessionStorage.getItem("ownerid"),allListData);
+    initializeListAddButton(sessionStorage.getItem("ownerid"));
 }

@@ -1,5 +1,6 @@
 $.getScript("listview.js");
 $.getScript("listitemview.js");
+$.getScript("spectrum.min.js")
 
 $(document).ready(function() {
     logInScreenInitialization();
@@ -26,6 +27,9 @@ function logInScreenInitialization(){
 
 function processLoginSubmit(){
     $('#loginForm').submit(function(event) {
+        // stop the form from submitting and refreshing the page
+        event.preventDefault();
+
         var username = $('input[name=user]').val();
         var password = $('input[name=pass]').val();
 
@@ -47,8 +51,6 @@ function processLoginSubmit(){
         }).fail(function(){
             alert("Server connection failed.");
         });
-        // stop the form from submitting and refreshing the page
-        event.preventDefault();
     });
 }
 

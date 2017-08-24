@@ -207,28 +207,52 @@ div.table-title {
   width: 90%;
 }
 
-.list-item-add-button{
-  margin: auto;
-  padding:15px;
-  width: 10%;
-}
-
-.list-item-add-input{
-  margin: auto;
-  padding:15px;
-  width: 90%;
-}
-
 .list-item-name{
   margin: auto;
-  padding:15px;
+  padding:20px;
   width: 90%;
 }
 .list-item-edit{
   margin: auto;
-  padding:15px;
+  padding:20px;
   width: 10%;
 }
+
+.item-back-button{
+  margin: auto;
+  padding: 10px;
+  width: 10%;
+}
+
+.item-list-select{
+  margin: auto;
+  padding: 10px;
+  width: 30%;
+}
+
+.item-logout{
+  margin: auto;
+  padding: 10px;
+  width: 30%;
+}
+
+.item-logout-space{
+  width: 30%;
+}
+
+.item-add-button-wrapper{
+  margin: auto;
+  padding: 10px;
+  width: 10%;
+}
+
+.item-add-input-wrapper{
+  margin: auto;
+  padding: 10px;
+  width: 90%;
+}
+
+
 
 .list-add-button{
   margin: auto;
@@ -242,6 +266,10 @@ div.table-title {
   width: 95%;
 }
 
+.list-edit-row{
+  padding:5px;
+}
+
 tr {
   border-top: 1px solid #C1C3D1;
   border-bottom-: 1px solid #C1C3D1;
@@ -249,7 +277,7 @@ tr {
   font-weight:normal;
 }
  
-tr:hover td {
+.table-row:hover {
   background:#4E5066;
   color:#FFFFFF;
   border-top: 1px solid #22262e;
