@@ -54,6 +54,21 @@
 
 	</div>
 
+	<div id="forgot_password_card" class="login-card">
+		<h1>Reset password</h1><br>
+		<form id="restetPasswordForm" action="" title="" method="post">
+	   		<input type="text" id="register_email" placeholder="E-mail">
+	    	<input type="submit" id="registerButton" class="login login-submit" value="Submit">
+		</form>
+    
+		<div class="login-help">
+			<a href="#" id="register_login_button">Login</a> • <a href="#">Forgot Password</a>
+		</div>
+		<div id="register_error_message" class="login-result">
+		</div>
+
+	</div>
+
 	<div class='rows-container' id="list_display"></div>
 	<div id="list_item_display"></table>
 	
