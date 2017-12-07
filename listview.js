@@ -40,6 +40,7 @@ function buildListHeaderHTML(){
     return "<table class='table-top'>\
         <tr>\
             <td class='list-header-text'><h1>Lists</h1></td>\
+            <td class='list-header-share'></td>\
             <td class='list-header-logout'><input id='list_logout_button' type='submit' class='ui-button' value='Logout'></td>\
         </tr>\
     </table>\

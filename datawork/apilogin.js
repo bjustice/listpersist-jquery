@@ -42,6 +42,7 @@ function attemptLogin(){
 var listActions = 
 	[ 	['add','Add',['Owner ID','ownerid'],['List Name','listname'],['Output Type','output_type']],
 		['allowned','All Owned', ['Owner ID','ownerid'],['Output Type','output_type']],
+		['allviewable','All Viewable',['Owner ID','ownerid'],['Output Type','output_type']],
 		['delete','Delete',['List ID','listid'],['Output Type','output_type']],
 		['changecolor','Change Color',['List ID','listid'],['List Color','listcolor'],['Output Type','output_type']],
 		['changename','Change Name',['List ID','listid'],['List Name','listname'],['Output Type','output_type']] ] ;

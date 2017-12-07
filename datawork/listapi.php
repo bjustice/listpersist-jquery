@@ -68,6 +68,23 @@ function list_actions($action,$columns,$values,$link){
 				}
 			}
 			break;
+		case 'allviewable':
+			if($ownerID == ""){
+				outputList($outputType,0,"","Invalid Parameters. Owner ID expected.");
+			}
+			else{
+				$sql = "SELECT connection_id,owner_id,shared_id,list_id,approved FROM user_connections WHERE owner_id=".$ownerID;
+				$result = $link->query($sql);
+				if($result->num_rows> 0){
+					$sharedListID = "";
+					while($row = $result->fetch_assoc()){
+						$sharedListID .= $row['list_id'].',';
+					}
+					$sharedListSQL = "SELECT listid,listname,listcolor,listinputdate,listupdatedate FROM list WHERE ownerid in ".$sharedListID;
+					echo $sharedListSQL;
+				}
+			}
+			break;
 		case 'delete':
 			if($listID == ""){
 				outputList($outputType,0,"","Invalid parameters. List ID expected.");

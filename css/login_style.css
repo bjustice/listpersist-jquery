@@ -15,6 +15,7 @@ body {
   color: #FFF;
 }
 
+
 .login-card {
   padding: 10px 10px 10px 10px;
   background-color: #F7F7F7;
@@ -178,10 +179,27 @@ div.table-title {
   width: 70%;
 }
 
+.list-header-share{
+  margin: auto;
+  padding:10px 15px 0px 15px;
+  width: 10%;
+  background-image: url('images/LP-Share.png');
+  background-repeat: no-repeat;
+}
+
+.list-header-share:hover{
+  margin: auto;
+  padding:10px 15px 0px 15px;
+  width: 10%;
+  background-image: url('images/LP-Share-Hover.png');
+  background-repeat: no-repeat;
+}
+}
+
 .list-header-logout{
   margin: auto;
   padding:10px 15px 0px 15px;
-  width: 30%;
+  width: 20%;
 }
 
 .list-name{
